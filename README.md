@@ -20,4 +20,4 @@ The `script` will create -
 
 And they will contain some structured boilerplate code.
 
-N.B: Your feature folder should contain this script 😃
+N.B: Your feature folder should contain path reference of the script while running this command 😃
