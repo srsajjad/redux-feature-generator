@@ -13,9 +13,11 @@ node ReduxGen.js Button
 ```
 
 The `script` will create -
- * Button.js
- * ButtonContainer.js
- * ButtonAction.js
- * ButtonReducer.js
+ * `Button.js`
+ * `ButtonContainer.js`
+ * `ButtonAction.js`
+ * `ButtonReducer.js`
 
-And they will container some structured boilerplate code.
+And they will contain some structured boilerplate code.
+
+N.B: Your feature folder should contain this script 😃
