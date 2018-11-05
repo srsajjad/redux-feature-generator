@@ -1,0 +1,9 @@
+{
+    "name": "red-gen",
+    "version": "1.0.0",
+    "description": "genereate fetaure files inside a feature directory",
+    "main": "index.js",
+    "author": "srsajjad",
+    "license": "MIT",
+    "homepage": "https://github.com/srsajjad/scroll-percentage#readme"
+}

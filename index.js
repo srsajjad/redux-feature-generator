@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 let fs = require('fs')
 
 try {
@@ -10,14 +12,16 @@ try {
   let containerName = finalCompName + 'Container' + '.js'
   let actionName = finalCompName + 'Action' + '.js'
   let reducerName = finalCompName + 'Reducer' + '.js'
+  let indexName = 'lol.js'
   // let thunkName = finalCompName + 'Thunk' + '.js'
 
   createFile(Component(), `./${componentName}`)
   createFile(Container(), `./${containerName}`)
   createFile(Action(), `./${actionName}`)
   createFile(Reducer(), `./${reducerName}`)
+  createFile(CreateIndex(finalCompName+'Container'), `./${indexName}`)
 } catch (e) {
-  console.log('Did not follow the instructions ! Did you ?')
+  console.log('Did not follow the instructions ! Did you ?', e)
 }
 
 function toTitle (str) {
@@ -92,5 +96,12 @@ function Reducer () {
         return state
     }
   }
+  `
+}
+
+function CreateIndex (containerName) {
+  return `
+  import { ${containerName} } from './${containerName}'
+  export { ${containerName} }
   `
 }

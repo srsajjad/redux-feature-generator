@@ -1,15 +1,19 @@
+```sh
+npm i -g red-gen  
+```
+
 Create A Feature Folder.
 
 Run this command from inside that folder -
 
 ```javascript
-node ReduxGen.js <your desired componentName>
+red-gen <Component Name>
 ```
 
 Like -
 
 ```javascript
-node ReduxGen.js Button
+red-gen Button
 ```
 
 The `script` will create -
@@ -17,7 +21,8 @@ The `script` will create -
  * `ButtonContainer.js`
  * `ButtonAction.js`
  * `ButtonReducer.js`
+ * `Index.js`
 
 And they will contain some structured boilerplate code.
 
-N.B: Your feature folder should contain path reference of the script while running this command 😃
+😃
