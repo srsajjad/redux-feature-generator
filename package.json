@@ -5,5 +5,8 @@
     "main": "index.js",
     "author": "srsajjad",
     "license": "MIT",
-    "homepage": "https://github.com/srsajjad/scroll-percentage#readme"
+    "homepage": "https://github.com/srsajjad/scroll-percentage#readme",
+    "bin": {
+        "red-gen": "./index.js"
+    }
 }
