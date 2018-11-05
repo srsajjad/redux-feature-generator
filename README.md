@@ -21,7 +21,7 @@ The `script` will create -
  * `ButtonContainer.js`
  * `ButtonAction.js`
  * `ButtonReducer.js`
- * `Index.js`
+ * `index.js`
 
 And they will contain some structured boilerplate code.
 

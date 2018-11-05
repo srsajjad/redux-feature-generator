@@ -12,7 +12,7 @@ try {
   let containerName = finalCompName + 'Container' + '.js'
   let actionName = finalCompName + 'Action' + '.js'
   let reducerName = finalCompName + 'Reducer' + '.js'
-  let indexName = 'lol.js'
+  let indexName = 'index.js'
   // let thunkName = finalCompName + 'Thunk' + '.js'
 
   createFile(Component(), `./${componentName}`)
