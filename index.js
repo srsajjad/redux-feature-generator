@@ -15,11 +15,11 @@ try {
   let indexName = 'index.js'
   // let thunkName = finalCompName + 'Thunk' + '.js'
 
-  createFile(Component(), `./${componentName}`)
+  createFile(Component(finalCompName), `./${componentName}`)
   createFile(Container(), `./${containerName}`)
   createFile(Action(), `./${actionName}`)
   createFile(Reducer(), `./${reducerName}`)
-  createFile(CreateIndex(finalCompName+'Container'), `./${indexName}`)
+  createFile(CreateIndex(finalCompName + 'Container'), `./${indexName}`)
 } catch (e) {
   console.log('Did not follow the instructions ! Did you ?', e)
 }
@@ -39,19 +39,18 @@ function createFile (data, filePath) {
   })
 }
 
-function Component () {
+function Component (componentName) {
   return `
-  import React, { Component } from 'react'
+  import React from 'react'
 
-  export default class componentName extends Component {
-    render () {
-      return (
-        <div>
-          CONTENT
-        </div>
-      )
-    }
-  }
+  function ${componentName}() {
+    return (
+      <div>
+        CONTENT
+      </div>
+    )
+  }  
+  export default ${componentName}
   `
 }
 
