@@ -43,7 +43,7 @@ function Component (componentName) {
   return `
   import React from 'react'
 
-  function ${componentName}() {
+  const ${componentName} = () => {
     return (
       <div>
         CONTENT
