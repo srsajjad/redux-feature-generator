@@ -4,22 +4,22 @@ let fs = require('fs')
 
 try {
   let compName = process.argv[2]
-  let finalCompName = toTitle(compName)
+  let finalCompName = reduceDash(compName)
   console.log('finalCompName', finalCompName)
   // let buildThunk = process.argv[3] ? !!process.argv[3].includes('-t') : false
 
-  let componentName = finalCompName + '.js'
-  let containerName = finalCompName + 'Container' + '.js'
-  let actionName = finalCompName + 'Action' + '.js'
-  let reducerName = finalCompName + 'Reducer' + '.js'
+  let componentName = finalCompName
+  let containerName = finalCompName + 'Container'
+  let actionName = finalCompName + 'Action'
+  let reducerName = finalCompName + 'Reducer'
   let indexName = 'index.js'
   // let thunkName = finalCompName + 'Thunk' + '.js'
 
-  createFile(Component(finalCompName), `./${componentName}`)
-  createFile(Container(), `./${containerName}`)
-  createFile(Action(), `./${actionName}`)
-  createFile(Reducer(), `./${reducerName}`)
-  createFile(CreateIndex(finalCompName + 'Container'), `./${indexName}`)
+  createFile(Component(componentName), `./${componentName}.js`)
+  createFile(Container(componentName, actionName), `./${containerName}.js`)
+  createFile(Action(actionName), `./${actionName}.js`)
+  createFile(Reducer(reducerName), `./${reducerName}.js`)
+  createFile(CreateIndex(containerName), `./${indexName}`)
 } catch (e) {
   console.log('Did not follow the instructions ! Did you ?', e)
 }
@@ -31,6 +31,13 @@ function toTitle (str) {
     else return n.toLowerCase()
   })
   return y.join('')
+}
+
+function reduceDash (str) {
+  let individualWordArr = str.split('-')
+  let reducedArr = individualWordArr.map(n => toTitle(n))
+  let finalStr = reducedArr.join('')
+  return finalStr
 }
 
 function createFile (data, filePath) {
@@ -54,28 +61,28 @@ function Component (componentName) {
   `
 }
 
-function Container () {
+function Container (componentName, actionName) {
   return `
   import { connect } from 'react-redux'
-  import component from '../components/component'
-  import { actionCreator } from '../actionPath'
+  import { ${actionName} } from './${actionName}'
+  import ${componentName} from './${componentName}'
 
   const mapStateToProps = (state, ownProps) => ({
       
   })
 
-  const mapDispatchToProps = {
+  const mapDispatchToProps = () => ({
       
-  }
+  })
 
-  export default connect(mapStateToProps, mapDispatchToProps)(component)
+  export default connect(mapStateToProps, mapDispatchToProps)(${componentName})
 
   `
 }
 
-function Action () {
+function Action (actionName) {
   return `
-  export let CountAction = x => {
+  export const ${actionName} = x => {
     return {
       type: '' // Cap Letter
     }
@@ -83,9 +90,9 @@ function Action () {
   `
 }
 
-function Reducer () {
+function Reducer (reducerName) {
   return `
-  export const reducerName = (state = [], action) => {
+  export const ${reducerName} = (state = [], action) => {
     switch (action.type) {
       case 'ACTION_TYPE':
         return {
@@ -100,7 +107,7 @@ function Reducer () {
 
 function CreateIndex (containerName) {
   return `
-  import { ${containerName} } from './${containerName}'
+  import ${containerName} from './${containerName}'
   export { ${containerName} }
   `
 }
