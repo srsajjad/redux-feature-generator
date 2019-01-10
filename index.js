@@ -5,7 +5,7 @@ let fs = require('fs')
 try {
   let compName = process.argv[2]
   let finalCompName = reduceDash(compName)
-  console.log('finalCompName', finalCompName)
+  // console.log('finalCompName', finalCompName)
   // let buildThunk = process.argv[3] ? !!process.argv[3].includes('-t') : false
 
   let componentName = finalCompName
@@ -16,10 +16,15 @@ try {
   // let thunkName = finalCompName + 'Thunk' + '.js'
 
   createFile(Component(componentName), `./${componentName}.js`)
-  createFile(Container(componentName, actionName), `./${containerName}.js`)
+  createFile(
+    Container(componentName, actionName, containerName),
+    `./${containerName}.js`
+  )
   createFile(Action(actionName), `./${actionName}.js`)
   createFile(Reducer(reducerName), `./${reducerName}.js`)
   createFile(CreateIndex(containerName), `./${indexName}`)
+
+  console.log('Done')
 } catch (e) {
   console.log('Did not follow the instructions ! Did you ?', e)
 }
@@ -61,13 +66,14 @@ function Component (componentName) {
   `
 }
 
-function Container (componentName, actionName) {
+function Container (componentName, actionName, containerName) {
   return `
+  import React, {Component} from 'react'
   import { connect } from 'react-redux'
   import { ${actionName} } from './${actionName}'
   import ${componentName} from './${componentName}'
 
-  const mapStateToProps = (state, ownProps) => ({
+  const mapStateToProps = state => ({
       
   })
 
@@ -75,7 +81,17 @@ function Container (componentName, actionName) {
       
   })
 
-  export default connect(mapStateToProps, mapDispatchToProps)(${componentName})
+  class ${containerName} extends Component{
+    render(){
+      return(
+        <div>
+          Container Content
+        </div>
+      )
+    }
+  }
+
+  export default connect(mapStateToProps, mapDispatchToProps)(${containerName})
 
   `
 }
@@ -108,6 +124,6 @@ function Reducer (reducerName) {
 function CreateIndex (containerName) {
   return `
   import ${containerName} from './${containerName}'
-  export { ${containerName} }
+  export default ${containerName}
   `
 }

@@ -26,3 +26,18 @@ The `script` will create -
 And they will contain some structured boilerplate code.
 
 😃
+
+If component name includes more than one word, then use dash(-) between them
+
+Like -
+
+```javascript
+red-gen login-button
+```
+
+The `script` will create -
+ * `LoginButton.js`
+ * `LoginButtonContainer.js`
+ * `LoginButtonAction.js`
+ * `LoginButtonReducer.js`
+ * `index.js`
