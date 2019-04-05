@@ -25,13 +25,11 @@ try {
   )
   createFile(Action(), `./${actionName}.js`)
   createFile(Reducer(), `./${reducerName}.js`)
+  createFile(Selector(), `./${selectorName}.js`)
+  createFile(Types(), `./${typesName}.js`)
+  createFile(Style(), `./${styleName}.js`)
+  createFile(Thunk(), `./${thunkName}.js`)
   createFile(CreateIndex(), `./${indexName}`)
-
-  createFile(Selector(), `./${selectorName}`)
-  createFile(Types(), `./${typesName}`)
-  createFile(Style(), `./${styleName}`)
-  createFile(Thunk(), `./${thunkName}`)
-  
 
   console.log('Done')
 } catch (e) {
@@ -91,7 +89,7 @@ function Container () {
     fetchData: () => dispatch(getDataThunk())
   })
   
-  const ContainerName = props => {
+  const ${containerName} = props => {
     useEffect(() => {
       props.fetchData()
     }, [])
@@ -105,7 +103,7 @@ function Container () {
   export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(ContainerName)
+  )(${containerName})
   
   `
 }
