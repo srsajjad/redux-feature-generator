@@ -60,7 +60,7 @@ function createFile (data, filePath) {
   })
 }
 
-function Component (componentName) {
+function Component () {
   return `
   import React from 'react'
 
@@ -75,62 +75,75 @@ function Component (componentName) {
   `
 }
 
-function Container (componentName, actionName, containerName) {
+function Container () {
   return `
-  import React, {Component} from 'react'
+  import React, { useEffect } from 'react'
   import { connect } from 'react-redux'
-  import { ${actionName} } from './${actionName}'
+  import { getDataThunk } from './${thunkName}'
+  import { getData } from './${selectorName}'
   import ${componentName} from './${componentName}'
-
+  
   const mapStateToProps = state => ({
-      
+    data: getData(state)
   })
-
-  const mapDispatchToProps = () => ({
-      
+  
+  const mapDispatchToProps = dispatch => ({
+    fetchData: () => dispatch(getDataThunk())
   })
-
-  class ${containerName} extends Component{
-    render(){
-      return(
-        <div>
-          Container Content
-        </div>
-      )
-    }
+  
+  const ContainerName = props => {
+    useEffect(() => {
+      props.fetchData()
+    }, [])
+  
+    return (
+      <${componentName} />
+    )
+    
   }
-
-  export default connect(mapStateToProps, mapDispatchToProps)(${containerName})
-
+  
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(ContainerName)
+  
   `
 }
 
-function Action (actionName) {
+function Action () {
   return `
-  export const ${actionName} = x => {
+  import * as types from './${typesName}'
+
+  export const setData = payload => {
     return {
-      type: '' // Cap Letter
+      type: types.SET_DATA,
+      payload
     }
   }
   `
 }
 
-function Reducer (reducerName) {
+function Reducer () {
   return `
-  export const ${reducerName} = (state = [], action) => {
-    switch (action.type) {
-      case 'ACTION_TYPE':
-        return {
-          ...state
-        }
-      default:
-        return state
-    }
+  import { createReducer } from 'redux-starter-kit'
+  import * as types from './${typesName}'
+  
+  let initState = {
+    data: {}
   }
+  
+  export const ${reducerName} = createReducer(initState, {
+  
+    [types.SET_DATA]: (state, action) => {
+      state.data = action.payload
+    }
+    
+  })
+  
   `
 }
 
-function CreateIndex (containerName) {
+function CreateIndex () {
   return `
   import ${containerName} from './${containerName}'
   export default ${containerName}
