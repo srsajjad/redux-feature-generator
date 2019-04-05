@@ -61,15 +61,18 @@ function createFile (data, filePath) {
 function Component () {
   return `
   import React from 'react'
+  import { withStyles } from '@material-ui/core/styles'
+  import { styles } from './${styleName}'
 
-  const ${componentName} = () => {
+  const ${componentName} = props => {
+    let { classes } = props
     return (
-      <div>
+      <div className={classes.some_class}>
         CONTENT
       </div>
     )
   }  
-  export default ${componentName}
+  export default withStyles(styles)(${componentName})
   `
 }
 

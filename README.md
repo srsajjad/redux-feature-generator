@@ -21,6 +21,10 @@ The `script` will create -
  * `ButtonContainer.js`
  * `ButtonAction.js`
  * `ButtonReducer.js`
+ * `ButtonThunk.js`
+ * `ButtonSelector.js`
+ * `ButtonTypes.js` 
+ * `ButtonStyle.js`
  * `index.js`
 
 And they will contain some structured boilerplate code.
@@ -40,4 +44,8 @@ The `script` will create -
  * `LoginButtonContainer.js`
  * `LoginButtonAction.js`
  * `LoginButtonReducer.js`
+ * `LoginButtonThunk.js`
+ * `LoginButtonSelector.js`
+ * `LoginButtonTypes.js` 
+ * `LoginButtonStyle.js`
  * `index.js`
