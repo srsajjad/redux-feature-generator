@@ -12,6 +12,10 @@ try {
   let containerName = finalCompName + 'Container'
   let actionName = finalCompName + 'Action'
   let reducerName = finalCompName + 'Reducer'
+  let slectorName = finalCompName + 'Selector'
+  let typesName = finalCompName + 'Types'
+  let styleName = finalCompName + 'Styles'
+  let thunkName = finalCompName + 'Thunk'
   let indexName = 'index.js'
   // let thunkName = finalCompName + 'Thunk' + '.js'
 
