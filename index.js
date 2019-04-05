@@ -143,6 +143,76 @@ function Reducer () {
   `
 }
 
+function Selector () {
+  return `
+  import { createSelector } from 'redux-starter-kit'
+
+  export const getData = createSelector(
+    ['${reducerName}.data'],
+    data => data
+  )
+  
+  `
+}
+
+function Thunk () {
+  return `
+  import { setData } from './${actionName}'
+  
+  export const getDataThunk = () => {
+    return async (dispatch, getState) => {
+      try {
+
+        let state = getState()
+  
+        let data = await fetch()
+  
+        dispatch(setData(data))
+
+      } catch (err) {
+        console.log('error occured', err)
+      }  
+    }
+  }
+  
+  `
+}
+
+function Types () {
+  return `
+  export const SET_DATA = 'SET_DATA'
+  `
+}
+
+function Style () {
+  return `
+  export const styles = theme => ({
+
+    some_class: {
+      backgroundColor: 'white',
+      display: 'flex',
+
+      '&:first-child': {
+        marginTop: '2%'
+      },
+
+      '&:last-child': {
+        marginBottom: '25px'
+      },
+
+      '@media (max-width:800px)': {
+        width: '96%',
+        paddingBottom: '35%'
+      }
+    }
+    
+  })
+  
+  `
+}
+
+
+
 function CreateIndex () {
   return `
   import ${containerName} from './${containerName}'
