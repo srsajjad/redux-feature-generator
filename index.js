@@ -12,7 +12,7 @@ try {
   var containerName = finalCompName + 'Container'
   var actionName = finalCompName + 'Action'
   var reducerName = finalCompName + 'Reducer'
-  var slectorName = finalCompName + 'Selector'
+  var selectorName = finalCompName + 'Selector'
   var typesName = finalCompName + 'Types'
   var styleName = finalCompName + 'Styles'
   var thunkName = finalCompName + 'Thunk'
