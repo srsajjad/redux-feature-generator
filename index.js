@@ -3,30 +3,35 @@
 let fs = require('fs')
 
 try {
-  let compName = process.argv[2]
-  let finalCompName = reduceDash(compName)
+  var compName = process.argv[2]
+  var finalCompName = reduceDash(compName)
   // console.log('finalCompName', finalCompName)
   // let buildThunk = process.argv[3] ? !!process.argv[3].includes('-t') : false
 
-  let componentName = finalCompName
-  let containerName = finalCompName + 'Container'
-  let actionName = finalCompName + 'Action'
-  let reducerName = finalCompName + 'Reducer'
-  let slectorName = finalCompName + 'Selector'
-  let typesName = finalCompName + 'Types'
-  let styleName = finalCompName + 'Styles'
-  let thunkName = finalCompName + 'Thunk'
-  let indexName = 'index.js'
-  // let thunkName = finalCompName + 'Thunk' + '.js'
+  var componentName = finalCompName
+  var containerName = finalCompName + 'Container'
+  var actionName = finalCompName + 'Action'
+  var reducerName = finalCompName + 'Reducer'
+  var slectorName = finalCompName + 'Selector'
+  var typesName = finalCompName + 'Types'
+  var styleName = finalCompName + 'Styles'
+  var thunkName = finalCompName + 'Thunk'
+  var indexName = 'index.js'
 
-  createFile(Component(componentName), `./${componentName}.js`)
+  createFile(Component(), `./${componentName}.js`)
   createFile(
-    Container(componentName, actionName, containerName),
+    Container(),
     `./${containerName}.js`
   )
-  createFile(Action(actionName), `./${actionName}.js`)
-  createFile(Reducer(reducerName), `./${reducerName}.js`)
-  createFile(CreateIndex(containerName), `./${indexName}`)
+  createFile(Action(), `./${actionName}.js`)
+  createFile(Reducer(), `./${reducerName}.js`)
+  createFile(CreateIndex(), `./${indexName}`)
+
+  createFile(Selector(), `./${selectorName}`)
+  createFile(Types(), `./${typesName}`)
+  createFile(Style(), `./${styleName}`)
+  createFile(Thunk(), `./${thunkName}`)
+  
 
   console.log('Done')
 } catch (e) {
